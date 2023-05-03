@@ -5,12 +5,14 @@ class TeaShop{
 	public static boolean addTeaName(String teaName){
 		System.out.println("addTeaName method started");
 		boolean isAdded=false;
-		if(teaName !=null){
+		if(teaName !=null && index < teaNames.length){
+		
 			teaNames[index++]=teaName;
 			isAdded=true;
+			
 		}
 		else{
-		System.out.println("Enter valid teaName");
+		System.out.println("oops..overfilled");
 		}
 		System.out.println("addTeaName method ended");
 		return isAdded;
@@ -39,7 +41,19 @@ class TeaShop{
 		System.out.println("updateTeaName method ended");
 		return isUpdated;
 	}
+public static String getTeaName(String teaName)
+{
+	for(int i=0;i<teaNames.length;i++)
+	{
+if(teaNames[i].equals(teaName))
+{
+	return teaNames[i];
 }
+	}
+	return ("no tea name found");
+}
+}
+
 	
 
 

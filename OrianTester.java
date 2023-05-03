@@ -15,9 +15,13 @@ class OrianTester{
         OrianMall.addShopName("nykaa");
 	    OrianMall.addShopName("William penn");
         OrianMall.addShopName("Puma");
+		System.out.println("search item");
 		OrianMall.getShopNames();
 		OrianMall.updateShopName("Puma","Aldo");
 		OrianMall.getShopNames();
+		String isPresent=OrianMall.getShopName("zara");
+		System.out.println("search item is: "+isPresent);
+		
 	}
 
 }

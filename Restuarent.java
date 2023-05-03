@@ -4,12 +4,12 @@ class Restuarent{
 	public static boolean addMenus(String menu){
 		System.out.println("addMenu method started");
 		boolean isAdded=false;
-		if(menu!=null){
+		if(menu!=null && index < menus.length){
 			menus[index++]=menu;
 			isAdded=true;
 		}
 		else{
-		System.out.println("Enter valid menu");
+		System.out.println("oops ...overfilled");
 		}
 		System.out.println("addMenu method ended");
 		return isAdded;
@@ -36,7 +36,18 @@ class Restuarent{
 		System.out.println("updateMenu method ended");
 		return isUpdated;
 	}
+public static String getMenu(String Menu)
+{
+	for(int i=0;i<menus.length;i++)
+	{
+if(menus[i].equals(Menu))
+{
+	return menus[i];
 }
-	
+	}
+	return ("no menu name found");
+}
+}
+
 
 

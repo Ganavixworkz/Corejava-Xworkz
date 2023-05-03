@@ -5,12 +5,12 @@ class MobileShop{
 	public static boolean addMobileName(String mobileName){
 		System.out.println("addmobileName method started");
 		boolean isAdded=false;
-		if(mobileName !=null){
+		if(mobileName !=null  && index < mobileNames.length){
 			mobileNames[index++]=mobileName;
 			isAdded=true;
 		}
 		else{
-		System.out.println("Enter valid mobileName");
+		System.out.println("oops...overfilled");
 		}
 		System.out.println("addMobileName method ended");
 		return isAdded;
@@ -39,7 +39,19 @@ class MobileShop{
 		System.out.println("updateMobileName method ended");
 		return isUpdated;
 	}
+public static String getMobileName(String mobileName)
+{
+	for(int i=0;i<mobileNames.length;i++)
+	{
+if(mobileNames[i].equals(mobileName))
+{
+	return mobileNames[i];
 }
+	}
+	return ("no mobile name found");
+}
+}
+
 	
 
 

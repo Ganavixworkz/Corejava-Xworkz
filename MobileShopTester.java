@@ -10,11 +10,12 @@ class MobileShopTester{
 		MobileShop.addMobileName("idea");
 		MobileShop.addMobileName("oppo");
 		MobileShop.addMobileName("lava");
-		
-
+		System.out.println("search name");
 		MobileShop.getMobileNames();
-		MobileShop.updateMobileName("iphone","apple");
+        MobileShop.updateMobileName("iphone","apple");
 		MobileShop.getMobileNames();
+		String isPresent=MobileShop.getMobileName("oppo");
+		System.out.println("search item is: "+isPresent);
 	}
 
 }

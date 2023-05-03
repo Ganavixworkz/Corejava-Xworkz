@@ -15,9 +15,12 @@ class RestuarentTester{
 		Restuarent.addMenus("Gobi");
 		Restuarent.addMenus("Mushroom manchurian");
 		Restuarent.addMenus("baby corn manchurian");
+		System.out.println("search item");
 		Restuarent.getMenu();
 		Restuarent.updateMenu("Dosa","Masala Dosa");
 		Restuarent.getMenu();
+		String isPresent=Restuarent.getMenu("Gobi");
+		System.out.println("search item is: "+isPresent);
 	}
 
 }

@@ -10,9 +10,12 @@ class TheatreTester{
 		Theatre.addMovieName("Dhamaka");
 		Theatre.addMovieName("Orange");
 		Theatre.addMovieName("Veera");
+		System.out.println("search  name");
 		Theatre.getMovieNames();
 		Theatre.updateMovieName("Eega","KGF 2");
 		Theatre.getMovieNames();
+		String  isPresent=Theatre.getTeaName("RRR");
+		System.out.println("search  item is: "+isPresent);
 	}
 
 }

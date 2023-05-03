@@ -5,12 +5,12 @@ class Theatre{
 	public static boolean addMovieName(String movieName){
 		System.out.println("addmovieName method started");
 		boolean isAdded=false;
-		if(movieName !=null){
+		if(movieName !=null  && index < movieNames.length){
 			movieNames[index++]=movieName;
 			isAdded=true;
 		}
 		else{
-		System.out.println("Enter valid movieName");
+		System.out.println("oops..overfilled");
 		}
 		System.out.println("addmovieName method ended");
 		return isAdded;
@@ -39,7 +39,19 @@ class Theatre{
 		System.out.println("updateMovieName method ended");
 		return isUpdated;
 	}
+public static String getTeaName(String movieName)
+{
+	for(int i=0;i<movieNames.length;i++)
+	{
+if(movieNames[i].equals(movieName))
+{
+	return movieNames[i];
 }
+	}
+	return ("no movie name found");
+}
+}
+
 	
 
 

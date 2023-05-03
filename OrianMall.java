@@ -6,12 +6,12 @@ class OrianMall
 	public static boolean addShopName(String shopName){
 		System.out.println("addShopName method started");
 		boolean isAdded=false;
-		if(shopName !=null){
+		if(shopName !=null && index < shopNames.length){
 			shopNames[index++]=shopName;
 			isAdded=true;
 		}
 		else{
-		System.out.println("Enter valid mobileName");
+		System.out.println("oops.overfilled");
 		}
 		System.out.println("addShopName method ended");
 		return isAdded;
@@ -40,7 +40,19 @@ class OrianMall
 		System.out.println("updateShopName method ended");
 		return isUpdated;
 	}
+public static String getShopName(String shopName)
+{
+	for(int i=0;i<shopNames.length;i++)
+	{
+if(shopNames[i].equals(shopName))
+{
+	return shopNames[i];
 }
+	}
+	return ("no shopname name found");
+}
+}
+
 	
 
 
