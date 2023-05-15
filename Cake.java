@@ -6,8 +6,17 @@ class Cake
 	String weight;
 	String  flavour;
 	
-	public void toEat()
+	public Cake()
 	{
-		System.out.println("Cake features");
+	}
+	public Cake(String color,String shape,double pric,String weight,String  flavour)
+	{
+	System.out.println("Cake features");
+	this.color= color;
+	this.shape= shape;
+	this.price= price;
+	this.weight= weight;
+	this.flavour= flavour;
+	
 	}
 }

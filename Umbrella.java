@@ -5,10 +5,16 @@ class Umbrella
 	double price;
 	int length;
 	int size;
-	   public void rainProtection(){
-		   System.out.println("Protection against rain and sunlight");
-		   
+	   public Umbrella()
+	   {
 	   }
-
-
+	   public Umbrella(String color , String warranty, double price ,int length, int size)
+	   {
+	   System.out.println("Umbrella features");
+	   this.color = color;
+	   this.warranty = warranty;
+	   this.price = price;
+       this.length = length;
+       this.size = size;	   
+	   }
 }
