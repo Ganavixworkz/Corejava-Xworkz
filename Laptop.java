@@ -1,12 +1,8 @@
-package com.xworkzz.laptopapp;
-
-import com.xworkzz.laptopapp.harddisk.HardDisk;
+package com.xworkzz.deviceapp;
 
 public class Laptop {
 
-    public static HardDisk disk;
-
-    public Laptop(HardDisk harddisk) {
-        this.disk = harddisk;
+    public void toWork(){
+        System.out.println("Bussiness of laptop.");
     }
 }

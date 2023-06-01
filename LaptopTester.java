@@ -1,11 +1,10 @@
-package com.xworkzz.laptopapp;
-
-import com.xworkzz.laptopapp.harddisk.HardDisk;
+package com.xworkzz.deviceapp;
 
 public class LaptopTester {
+
     public static void main(String[] args) {
-        HardDisk hardDisk  =  new HardDisk();
-        Laptop laptop =  new Laptop(hardDisk);
-        Laptop.disk.toWork();
+        Laptop laptop = new ElectronicDevice();
+        laptop.toWork();
+
     }
 }
