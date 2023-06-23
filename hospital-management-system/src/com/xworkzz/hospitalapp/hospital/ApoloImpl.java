@@ -2,6 +2,8 @@ package com.xworkzz.hospitalapp.hospital;
 
 import com.xworkzz.hospitalapp.patientapp.Patient;
 
+import java.sql.SQLOutput;
+
 public class ApoloImpl implements Hospital {
     Patient patient[];
     int index;
@@ -48,9 +50,9 @@ public class ApoloImpl implements Hospital {
     }
 
     @Override
-    public String getPatientByAddress(String address) {
+    public String getPatientByAddress(String address1) {
         for (int i = 0; i < this.patient.length; i++)
-            if (this.patient[i].getAddress().equals(address)) {
+            if (this.patient[i].getAddress().equals(address1)) {
                 System.out.println(this.patient[i]);
             } else {
                 System.out.println("address not matched");
@@ -72,7 +74,7 @@ public class ApoloImpl implements Hospital {
     }
 
     @Override
-    public String getPatientNameByDiseaseName(String diseaseName) {
+    public String[] getPatientNameByDiseaseName(String diseaseName) {
         System.out.println("invoked");
         for (int i=0; i < this.patient.length; i++) {
             if (this.patient[i].getDiseaseName().equals(diseaseName)) {
@@ -88,7 +90,7 @@ public class ApoloImpl implements Hospital {
     public boolean updatePatientDiseaseByPatientName(String existingName, String updateDisease) {
         boolean isUpdated=false;
         for(int i=0;i<patient.length;i++) {
-            if (this.patient[i].getDiseaseName().equals(existingName)) {
+            if (this.patient[i].getName().equals(existingName)) {
                 this.patient[i].setDiseaseName(updateDisease);
                 isUpdated = true;
                 System.out.println("Disease name is updated");
@@ -110,9 +112,60 @@ public class ApoloImpl implements Hospital {
                 System.out.println("Ward Number updated");
                 System.out.println(this.patient[i]);
             }
-
         }
         return isUpdate;
     }
 
+    @Override
+    public boolean updatePatientsAgeByPatientId(int existingPatientId, int updateAge) {
+        boolean isUpdated=false;
+        for(int i=0;i<patient.length;i++){
+            if(this.patient[i].getPatientId()==(existingPatientId)){
+                this.patient[i].setAge(updateAge);
+                isUpdated=true;
+                System.out.println("Age updated");
+                System.out.println(this.patient[i]);
+            }
+        }
+        return isUpdated;
+    }
+
+    @Override
+    public Patient getPatientById(int patient) {
+        System.out.println("invoked");
+        for (int i = 0; i < this.patient.length; i++) {
+            if (this.patient[i].getPatientId() == patient) {
+                StringBuilder patientId = new StringBuilder();
+                patientId = patientId.append(this.patient[i].getName());
+                System.out.println(patientId);
+            }
+        }
+            return  null;
+        }
+
+    @Override
+    public String getPatientAttenderNameByPatientId(int patientId) {
+            System.out.println("invoked");
+            for (int i = 0; i < this.patient.length; i++) {
+                if (this.patient[i].getPatientId()==(patientId)) {
+                    StringBuilder AttenderName = new StringBuilder();
+                    AttenderName = AttenderName.append(this.patient[i].getAttenderName());
+                    System.out.println(AttenderName);
+                }
+            }
+        return null;
+    }
+
+    @Override
+    public String getStreetNameByPatientId(int existingId) {
+        System.out.println("invoked");
+        String streetName=null;
+        for(   Patient p1 :patient){
+            if(p1.getPatientId()==existingId){
+                streetName=p1.getAddress().getCountry().getState().getCity().getArea().getStreet().getStreetName();}
+        }
+        return streetName;
+    }
 }
+
+

@@ -1,5 +1,6 @@
 package com.xworkzz.hospitalapp;
 
+import com.xworkzz.hospitalapp.address.*;
 import com.xworkzz.hospitalapp.constant.Gender;
 import com.xworkzz.hospitalapp.constant.GovtProof;
 import com.xworkzz.hospitalapp.hospital.ApoloImpl;
@@ -16,7 +17,9 @@ public class Tester {
         int size=sc.nextInt();
         Hospital hospital= new ApoloImpl(size);
         for(int patientIndex=0;patientIndex<size;patientIndex++){
+
             Patient patient=new Patient();
+
             System.out.println("Enter the patient Id");
             patient.setPatientId(sc.nextInt());
             System.out.println("Enter the patient Name");
@@ -27,8 +30,8 @@ public class Tester {
             patient.setInsuranceAvailable(sc.nextBoolean());
             System.out.println("Enter the attender name");
             patient.setAttenderName(sc.next());
-            System.out.println("enter the address");
-            patient.setAddress(sc.next());
+          //  System.out.println("enter the address");
+           // patient.setAddress(sc.next());
             System.out.println("Enter the bloodgroup");
             patient.setBloodGroup(sc.next());
             System.out.println("Enter the disease name");
@@ -39,7 +42,41 @@ public class Tester {
             patient.setGovtProof(GovtProof.valueOf(sc.next()));
             System.out.println("enter the wardno");
             patient.setWardNo(sc.nextInt());
+            System.out.println("Enter the  age");
+            patient.setAge(sc.nextInt());
             hospital.addPatient(patient);
+
+            Street street = new Street();
+            Area area = new Area();
+            City city=new City();
+            State state=new State();
+            Country coun = new Country();
+            Address1 address=new Address1();
+
+
+
+
+
+            System.out.println("Enter the street name");
+            street.setStreetName(sc.next());
+            System.out.println("Enter the area name");
+            area.setAreaName(sc.next());
+            System.out.println("Enter the city name");
+            city.setCityName(sc.next());
+            System.out.println("Enter the State name");
+            state.setStateName(sc.next());
+            System.out.println("Enter the country name");
+            coun.setCountryName(sc.next());
+
+            patient.setAddress(address);
+            address.setCountry(coun);
+            coun.setState(state);
+            state.setCity(city);
+            city.setArea(area);
+            area.setStreet(street);
+
+
+
         }
         /*Patient patient=new Patient();
         patient.setPatientId(1);
@@ -56,17 +93,27 @@ public class Tester {
 
 
 
-        hospital.getAllPatients();
-        System.out.println("enter the patient address");
-hospital.getPatientByAddress(sc.next());
- System.out.println("Enter the wardno");
- hospital.getPatientNameByWard(sc.nextInt());
- System.out.println("Enter the Disease name");
- hospital.getPatientNameByDiseaseName(sc.next());
+
+      //  System.out.println("enter the patient address");
+      //  hospital.getPatientByAddress(sc.next());
+       System.out.println("Enter the wardno");
+         hospital.getPatientNameByWard(sc.nextInt());
+        System.out.println("Enter the Disease name");
+        hospital.getPatientNameByDiseaseName(sc.next());
         System.out.println("enter the updated disease name");
         hospital.updatePatientDiseaseByPatientName(sc.next(),sc.next());
         System.out.println("enter the updated wardno");
         hospital.updatePatientWardNoByPatientId(sc.nextInt(),sc.nextInt());
+        System.out.println("Enter the updated age");
+        hospital.updatePatientsAgeByPatientId(sc.nextInt(),sc.nextInt());
+        System.out.println("Enter the Id");
+        hospital.getPatientById(sc.nextInt());
+        System.out.println("Enter the Patient Id");
+        hospital.getPatientAttenderNameByPatientId(sc.nextInt());
+        System.out.println("Enter the patient Id");
+        String streetName= hospital.getStreetNameByPatientId(sc.nextInt());
+        System.out.println(streetName);
+        hospital.getAllPatients();
 
     }
 }
