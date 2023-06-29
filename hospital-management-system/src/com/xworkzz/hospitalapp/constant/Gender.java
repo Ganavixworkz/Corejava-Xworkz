@@ -1,5 +1,4 @@
-package com.xworkzz.ecommerceapp.constant;
-
+package com.xworkzz.hospitalapp.constant;
 
 public enum Gender {
     FEMALE,MALE,TRANSGENDER,LGBT;
