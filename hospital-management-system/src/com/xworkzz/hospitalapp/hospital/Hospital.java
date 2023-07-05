@@ -7,7 +7,7 @@ public interface Hospital {
 
     void getAllPatients();
 
-    String getPatientByAddress(String address1);
+    Patient getPatientByAddress(String address1);
 
     String getPatientNameByWard(int WardNo);
 

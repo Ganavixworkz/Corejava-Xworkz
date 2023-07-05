@@ -8,7 +8,7 @@ public interface Ecommerce {
     boolean addCustomer(Customer customer);
 
     void getAllCustomers();
-    String getCustomerByAddress(String address);
+    Customer getCustomerByAddress(String address);
     String getCustomerNameByCustomerId(int customerId);
     boolean updateCustomerEmailIdByCustomerId(int existingId,String updateEmailId);
 

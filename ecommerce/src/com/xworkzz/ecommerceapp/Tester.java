@@ -5,6 +5,7 @@ import com.xworkzz.ecommerceapp.constant.PaymentType;
 import com.xworkzz.ecommerceapp.customer.Customer;
 import com.xworkzz.ecommerceapp.ecommerce.AmazonImpl;
 import com.xworkzz.ecommerceapp.ecommerce.Ecommerce;
+import com.xworkzz.ecommerceapp.exception.EmailNotFoundException;
 
 import java.util.Scanner;
 
@@ -66,7 +67,11 @@ public class Tester {
                         break;
                     case 4:
                         System.out.println("enter the customer Id");
-                        ecommerce.updateCustomerEmailIdByCustomerId(sc.nextInt(), sc.next());
+                        try {
+                            ecommerce.updateCustomerEmailIdByCustomerId(sc.nextInt(), sc.next());
+                        }catch (EmailNotFoundException e){
+                            e.printStackTrace();
+                        }
                         break;
                     case 5:
                         System.out.println("enter the customer name");

@@ -1,6 +1,7 @@
 package com.xworkzz.ecommerceapp.ecommerce;
 
 import com.xworkzz.ecommerceapp.customer.Customer;
+import com.xworkzz.ecommerceapp.exception.EmailNotFoundException;
 import lombok.Data;
 
 @Data
@@ -27,7 +28,7 @@ public class AmazonImpl implements Ecommerce {
                 System.out.println("customer name is added");
 
             } else {
-                System.out.println("customer name is exeeded");
+                System.out.println("customer name is exceeded");
             }
         } else {
 
@@ -41,46 +42,50 @@ public class AmazonImpl implements Ecommerce {
     public void getAllCustomers() {
         System.out.println("invoked getAllCustomers");
         System.out.println("list of customers are:");
-        for (Customer cus : this.customer) {
+        for (Customer cus : customer) {
             System.out.println(cus);
         }
     }
 
     @Override
-    public String getCustomerByAddress(String address) {
-        String[] str = new String[5];
-        for (int i = 0; i < this.customer.length; i++)
-            if (this.customer[i].getAddress().equals(address)) {
-                System.out.println(this.customer[i]);
+    public Customer getCustomerByAddress(String address) {
+        Customer cus = null;
+        for (Customer c1 : customer) {
+            if (c1.getAddress().equals(address)) {
+                System.out.println(cus = c1);
             } else {
                 System.out.println("address not matched");
             }
-        return "str";
+            }
+            return cus;
     }
+
 
     @Override
     public String getCustomerNameByCustomerId(int customerId) {
         System.out.println("invoked");
-        for (int i = 0; i < this.customer.length; i++) {
-            if (this.customer[i].getCustomerId() == customerId) {
-                StringBuilder customerName = new StringBuilder();
-                customerName = customerName.append(this.customer[i].getCustomerName());
-                System.out.println(customerName);
+        String str=null;
+        for (Customer c:customer) {
+            if (c.getCustomerId() == customerId) {
+                System.out.println(str=c.getCustomerName());
             }
         }
-        return "not found";
+        return str;
 
     }
 
     @Override
     public boolean updateCustomerEmailIdByCustomerId(int existingId, String updateEmailId) {
         boolean isUpdated = false;
-        for (int i = 0; i < customer.length; i++) {
-            if (this.customer[i].getCustomerName().equals(existingId)) {
-                this.customer[i].setEmailId(updateEmailId);
+        for (Customer c:customer) {
+            if (c.getCustomerId()==(existingId)) {
+                c.setEmailId(updateEmailId);
                 isUpdated = true;
-                System.out.println("EmailId is updated");
-                System.out.println(this.customer[i]);
+                System.out.println(c);
+            }
+            else {
+                EmailNotFoundException email = new EmailNotFoundException(existingId,updateEmailId);
+                throw email;
             }
         }
         return isUpdated;
@@ -90,30 +95,27 @@ public class AmazonImpl implements Ecommerce {
     @Override
     public boolean updateCustomerAddressByCustomerName(String existingName, String updateAddress) {
         boolean isUpdated = false;
-        for (int i = 0; i < customer.length; i++) {
-            if (this.customer[i].getCustomerName().equals(existingName)) {
-                this.customer[i].setAddress(updateAddress);
+        for (Customer c:customer) {
+            if (c.getCustomerName().equals(existingName)) {
+                c.setAddress(updateAddress);
                 isUpdated = true;
-                System.out.println("Address is updated");
-                System.out.println(this.customer[i]);
+                System.out.println(c);
             }
         }
         return isUpdated;
 
 
     }
-
     @Override
     public Customer getCustomerById(int customerId) {
         System.out.println("invoked");
-        for (int i = 0; i < this.customer.length; i++) {
-            if (this.customer[i].getCustomerId() == customerId) {
-                StringBuilder customer = new StringBuilder();
-                customer = customer.append(this.customer[i].getCustomerName());
-                System.out.println(customer);
+        Customer cus=null;
+        for (Customer c:customer) {
+            if (c.getCustomerId() == customerId) {
+                System.out.println(cus=c);
             }
         }
-        return null;
+        return cus;
 
     }
 }

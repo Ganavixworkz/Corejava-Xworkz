@@ -1,9 +1,12 @@
 package com.xworkzz.hospitalapp.hospital;
 
+import com.xworkzz.hospitalapp.exception.DiseaseNotFoundException;
+import com.xworkzz.hospitalapp.exception.NotFoundWardException;
+import com.xworkzz.hospitalapp.exception.PatientIdNotFoundException;
 import com.xworkzz.hospitalapp.patientapp.Patient;
+import lombok.Data;
 
-import java.sql.SQLOutput;
-
+@Data
 public class ApoloImpl implements Hospital {
     Patient patient[];
     int index;
@@ -15,8 +18,7 @@ public class ApoloImpl implements Hospital {
     @Override
     public boolean addPatient(Patient patient) {
         System.out.println("invoked addPatient method");
-        boolean isAdded = false;
-        if (patient != null) {
+        boolean isAdded = false;{
             System.out.println("Patient check is completed...proceed to add patient");
             if (patient.getName() != null &&
                     !patient.getName().isEmpty() && patient.getBloodGroup() != null
@@ -29,10 +31,6 @@ public class ApoloImpl implements Hospital {
             } else {
                 System.out.println("patient name is exeeded");
             }
-        } else {
-
-
-            System.out.println("no patient");
         }
         return isAdded;
 
@@ -50,39 +48,43 @@ public class ApoloImpl implements Hospital {
     }
 
     @Override
-    public String getPatientByAddress(String address1) {
-        String[] str = new String[3];
-        for (int i = 0; i < this.patient.length; i++)
-            if (this.patient[i].getPatientAddress().equals(address1)) {
-                System.out.println(this.patient[i]);
-            } else {
-                System.out.println("address not matched");
+    public Patient getPatientByAddress(String address1) {
+        Patient p1=null;
+        for (Patient p : patient) {
+            if (p.getPatientAddress().equals(address1)) {
+                System.out.println(p1=p);
             }
-        return "str";
+        }
+        return p1;
     }
 
     @Override
     public String getPatientNameByWard(int WardNo) {
         System.out.println("invoked");
-        for (int i = 0; i < this.patient.length; i++) {
-            if (this.patient[i].getWardNo() == WardNo) {
-                StringBuilder patientName = new StringBuilder();
-                patientName = patientName.append(this.patient[i].getName());
-                System.out.println(patientName);
+        String str=null;
+        for (Patient pa :patient){
+            if (pa.getWardNo()==WardNo) {
+                System.out.println(str=pa.getName());
+            }
+            else {
+                NotFoundWardException exception = new NotFoundWardException(WardNo);
+                throw exception;
             }
         }
-        return "not found";
+        return str;
     }
 
     @Override
     public String[] getPatientNameByDiseaseName(String diseaseName) {
         System.out.println("invoked");
         String[] patientName = new String[2];
-        for (int i=0; i < this.patient.length; i++) {
-            if (this.patient[i].getDiseaseName().equals(diseaseName)) {
-                StringBuilder patientName1 = new StringBuilder();
-                patientName1 = patientName1.append(this.patient[i].getName());
-                System.out.println(patientName);
+        for (Patient p : patient){
+            if (p.getDiseaseName().equals(diseaseName)) {
+                System.out.println(p);
+            }
+            else {
+                DiseaseNotFoundException d = new DiseaseNotFoundException();
+                throw d;
             }
         }
             return patientName;
@@ -91,12 +93,12 @@ public class ApoloImpl implements Hospital {
     @Override
     public boolean updatePatientDiseaseByPatientName(String existingName, String updateDisease) {
         boolean isUpdated=false;
-        for(int i=0;i<patient.length;i++) {
-            if (this.patient[i].getName().equals(existingName)) {
-                this.patient[i].setDiseaseName(updateDisease);
+        for(Patient p:patient) {
+            if (p.getName().equals(existingName)) {
+                p.setDiseaseName(updateDisease);
                 isUpdated = true;
                 System.out.println("Disease name is updated");
-                System.out.println(this.patient[i]);
+                System.out.println(p);
             }
         }
         return isUpdated;
@@ -107,12 +109,12 @@ public class ApoloImpl implements Hospital {
     @Override
     public boolean updatePatientWardNoByPatientId(int existingId, int updateWardNo) {
         boolean isUpdate=false;
-        for (int i=0;i< patient.length;i++){
-            if(this.patient[i].getPatientId()==(existingId)){
-                this.patient[i].setWardNo( updateWardNo);
+        for (Patient p:patient){
+            if(p.getPatientId()==(existingId)){
+                p.setWardNo( updateWardNo);
                 isUpdate=true;
                 System.out.println("Ward Number updated");
-                System.out.println(this.patient[i]);
+                System.out.println(p);
             }
         }
         return isUpdate;
@@ -121,41 +123,43 @@ public class ApoloImpl implements Hospital {
     @Override
     public boolean updatePatientsAgeByPatientId(int existingPatientId, int updateAge) {
         boolean isUpdated=false;
-        for(int i=0;i<patient.length;i++){
-            if(this.patient[i].getPatientId()==(existingPatientId)){
-                this.patient[i].setAge(updateAge);
+        for(Patient p:patient){
+            if(p.getPatientId()==(existingPatientId)){
+                p.setAge(updateAge);
                 isUpdated=true;
                 System.out.println("Age updated");
-                System.out.println(this.patient[i]);
+                System.out.println(p);
             }
         }
         return isUpdated;
     }
 
     @Override
-    public Patient getPatientById(int patient) {
+    public Patient getPatientById(int patientId) {
         System.out.println("invoked");
-        for (int i = 0; i < this.patient.length; i++) {
-            if (this.patient[i].getPatientId() == patient) {
-                StringBuilder patientId = new StringBuilder();
-                patientId = patientId.append(this.patient[i].getName());
-                System.out.println(patientId);
+        Patient p1=null;
+        for (Patient p : patient) {
+            if (p.getPatientId() == patientId) {
+                System.out.println(p1=p);
+            }
+            else {
+                PatientIdNotFoundException pat = new PatientIdNotFoundException();
+                throw pat;
             }
         }
-            return  null;
+            return p1;
         }
 
     @Override
     public String getPatientAttenderNameByPatientId(int patientId) {
             System.out.println("invoked");
-            for (int i = 0; i < this.patient.length; i++) {
-                if (this.patient[i].getPatientId()==(patientId)) {
-                    StringBuilder AttenderName = new StringBuilder();
-                    AttenderName = AttenderName.append(this.patient[i].getAttenderName());
-                    System.out.println(AttenderName);
+            String str=null;
+            for (Patient p:patient) {
+                if (p.getPatientId()==(patientId)) {
+                    System.out.println(str=p.getAttenderName());
                 }
             }
-        return null;
+        return str;
     }
 
     @Override
